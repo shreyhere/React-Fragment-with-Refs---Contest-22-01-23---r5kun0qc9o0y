@@ -1,37 +1,16 @@
-import React, { useState, useEffect, Fragment, useRef } from "react";
-import '../styles/App.css';
+import React from 'react';
+import ListItems from './ListItems';
 
-import List from "./List";
-
-const App = () => {
-
-  const [value, setValue] = useState('');
-  const [list, setList] = useState([]);
-  const inputRef = useRef();
-
-  const onButtonClick = () => {
-
-    setList([]);
-    for (let i = 1; i < Number(value) + 1; i++) {
-      setList((prev) => [...prev, i]);
-    }
-    setValue('')
-    inputRef.current.focus();
-  };
-
-
-
-
+const List = ({ listx }) => {
   return (
-    <div id="main">
+    // <div>
+      <>
+        {listx.map((i) => {
+          return <ListItems valuex={i} />;
+        })}
+      </>
+    // </div>
+  )
+}
 
-      <input id="input" onChange={(e) => setValue(e.target.value)} value={value} ref={inputRef} />
-      <button id="button" onClick={onButtonClick}>Click</button>
-      <ul id="list">
-        <List listx={list} />
-      </ul>
-    </div>
-  );
-};
-
-export default App;
+export default List;
